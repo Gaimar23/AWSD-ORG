@@ -22,19 +22,19 @@ const SideBar = () => {
         </NavLink>
         <NavLink to="/news/add" className="sidebar-option">
           <FiFilePlus className="icon" />
-          <p>Add Job</p>
+          <p>Add Article</p>
         </NavLink>
         <NavLink to="/news/list" className="sidebar-option">
           <LuNewspaper className="icon" />
-          <p>List Jobs</p>
+          <p>List Articles</p>
         </NavLink>
         <NavLink to="/users/edit" className="sidebar-option">
           <FaUserEdit className="icon" />
-          <p>Add Job</p>
+          <p>Edit User</p>
         </NavLink>
         <NavLink to="/users/list" className="sidebar-option">
           <FaUsers className="icon" />
-          <p>List Jobs</p>
+          <p>List Users</p>
         </NavLink>
       </div>
     </div>

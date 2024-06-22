@@ -4,6 +4,13 @@
   justify-content: space-between;
   padding: 8px 80px;
   height: 80px;
+  // background-color: green;
+  //styling for fixed position
+  position: fixed;
+  width: 100%;
+  z-index: 10;
+  background-color: rgb(0, 128, 0);
+  border-radius: 0 4px 4px 0;
 
   .logo {
     width: 80px;

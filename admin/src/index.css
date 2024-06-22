@@ -3,10 +3,12 @@
   margin: 0;
   box-sizing: border-box;
   text-decoration: none;
+  line-height: 1;
 }
 
 body {
   min-height: 100vh;
+  background-color: rgba(0, 128, 0, 0.041);
 }
 
 hr {
