@@ -3,6 +3,7 @@ import cors from "cors";
 import "dotenv/config.js";
 import { connectDB } from "./config/db.js";
 import userRouter from "./routes/userRoute.js";
+import jobRouter from "./routes/jobRoute.js";
 
 // App config
 const app = express();
@@ -17,6 +18,9 @@ connectDB();
 
 // Api endpoints
 app.use("/api/user", userRouter);
+app.use("/api/job", jobRouter);
+app.use("/images", express.static("uploads"));
+
 //
 app.get("/", (req, res) => {
   res.send("API Working");

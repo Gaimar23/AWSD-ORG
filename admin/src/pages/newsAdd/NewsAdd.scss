@@ -19,7 +19,7 @@
         width: 290px;
         height: 100%;
         overflow: hidden;
-        box-shadow: 1px 1px 8px 4px rgb(0, 128, 0);
+        box-shadow: 1px 1px 8px 4px #a9a9a9;
         .news-img {
           width: 290px;
           height: 100%;
@@ -59,10 +59,10 @@
         .title-input {
           padding: 16px;
           outline: none;
-          border: 2px solid green;
+          border: 2px solid #a9a9a9;
           border-radius: 4px;
           font-size: 16px;
-          color: #222222;
+          color: #a9a9a9;
           background-color: transparent;
         }
       }
@@ -71,30 +71,30 @@
       width: 100%;
       margin-top: 30px;
       outline: none;
-      border: 2px solid green;
+      border: 2px solid #a9a9a9;
       padding: 16px;
       border-radius: 4px;
       font-size: 16px;
-      color: #222222;
+      color: #a9a9a9;
       background-color: transparent;
     }
 
     button.publish-job {
       width: 40%;
       outline: none;
-      border: 2px solid green;
+      border: 2px solid #a9a9a9;
       padding: 13px;
       border-radius: 29px;
       margin-top: 10px;
-      background-color: green;
+      background-color: transparent;
       color: white;
       font-weight: 600;
       font-size: 16px;
       transition: all 0.5s ease-in-out;
 
       &:hover {
-        background-color: transparent;
-        color: green;
+        background-color: #a9a9a9;
+        color: black;
         letter-spacing: 1px;
       }
     }

@@ -19,8 +19,10 @@
       font-size: 13px;
 
       &.title {
-        background-color: green;
-        border: 2px solid green;
+        // background-color: green;
+        // border: 2px solid green;
+        background-color: #a9a9a9;
+        border: 2px solid #a9a9a9;
         border-radius: 8px 8px 0 0;
         b {
           font-size: 17px;
@@ -33,7 +35,7 @@
         width: 80px;
         height: 80px;
         border-radius: 15px;
-        background-color: green;
+        background-color: #a9a9a9;
         padding: 2px;
       }
 

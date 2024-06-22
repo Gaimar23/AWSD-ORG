@@ -13,6 +13,8 @@ const addJob = async (req, res) => {
     type,
     description,
   } = req.body;
+  // console.log("Adding job");
+  // console.log("req.file:", req.file);
   let image_fileName = `${req.file.filename}`;
   try {
     const exits = await jobModel.findOne({ reference });
@@ -66,6 +68,29 @@ const updateJob = async (req, res) => {
     description,
     id,
   } = req.body;
+  try {
+    const job = await jobModel.findById(id);
+    if (job.image != req.file.filename) {
+      fs.unlink(`uploads/${job.image}`, () => {});
+      await jobModel.findByIdAndUpdate(id, {
+        image: req.file.filename,
+      });
+    }
+    await jobModel.findByIdAndUpdate(id, {
+      poste: poste,
+      department: department,
+      reference: reference,
+      contrat: contrat,
+      education: education,
+      localisation: localisation,
+      type: type,
+      description: description,
+    });
+    return res.json({ success: true, message: "job successfully updated" });
+  } catch (error) {
+    console.log(error);
+    return res.json({ success: false, message: "Error while updating" });
+  }
 };
 
 // get list of jobs
@@ -78,3 +103,5 @@ const getJobs = async (req, res) => {
     res.json({ success: false, message: "Error" });
   }
 };
+
+export { addJob, removeJob, updateJob, getJobs };

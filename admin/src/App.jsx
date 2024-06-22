@@ -6,10 +6,13 @@ import JobList from "./pages/jobList/JobList";
 import JobAdd from "./pages/jobAdd/JobAdd";
 import NewsList from "./pages/newsList/NewsList";
 import NewsAdd from "./pages/newsAdd/NewsAdd";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   return (
     <div>
+      <ToastContainer />
       <Navbar />
       {/* <hr /> */}
       <div className="app-container">
