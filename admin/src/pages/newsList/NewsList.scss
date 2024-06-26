@@ -1,6 +1,6 @@
 .news-list {
   // styling for fixed position
-  margin-top: 80px;
+  margin-top: 109px;
   margin-left: 18%;
   //
 
@@ -9,6 +9,10 @@
   padding-top: 50px;
 
   .list-table {
+    height: calc(100vh - 220px);
+    overflow-y: scroll;
+    scrollbar-color: black;
+
     .list-table-format {
       display: grid;
       grid-template-columns: 1fr 1.5fr 1.5fr 1fr;
@@ -19,8 +23,10 @@
       font-size: 13px;
 
       &.title {
-        background-color: #a9a9a9;
-        border: 2px solid #a9a9a9;
+        // background-color: #a9a9a9;
+        // border: 2px solid #a9a9a9;
+        background-color: green;
+        border: 2px solid green;
         border-radius: 8px 8px 0 0;
         b {
           font-size: 17px;
@@ -42,10 +48,6 @@
         height: 25px;
         cursor: pointer;
       }
-
-      //   .cursor {
-      //     cursor: pointer;
-      //   }
     }
   }
 }

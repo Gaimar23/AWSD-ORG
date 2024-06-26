@@ -1,0 +1,57 @@
+.user-edit {
+  margin-top: 109px;
+  margin-left: 18%;
+  //
+  width: 70%;
+  padding-left: 50px;
+  padding-top: 50px;
+
+  .user-form {
+    display: flex;
+    flex-flow: column;
+    gap: 25px;
+    .image-container {
+      .user-image {
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        padding: 4px;
+        background-color: green;
+        cursor: pointer;
+      }
+    }
+
+    .inputs {
+      display: flex;
+      flex-flow: column;
+      gap: 10px;
+
+      input {
+        padding: 10px;
+        outline: none;
+        border: 2px solid green;
+        border-radius: 5px;
+      }
+    }
+
+    button {
+      width: 40%;
+      outline: none;
+      border: 2px solid green;
+      padding: 13px;
+      border-radius: 29px;
+      background-color: transparent;
+      color: green;
+      font-weight: 600;
+      font-size: 16px;
+      transition: all 0.3s ease-in-out;
+      cursor: pointer;
+
+      &:hover {
+        background-color: green;
+        color: white;
+        letter-spacing: 1px;
+      }
+    }
+  }
+}

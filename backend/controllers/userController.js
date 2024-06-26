@@ -94,4 +94,18 @@ const getUser = async (req, res) => {
   }
 };
 
-export { loginUser, registerUser, getUser };
+const singleUser = async (req, res) => {
+  try {
+    const { userId } = req.params;
+    let user = await userModel.findById({ _id: userId });
+    return res.json({
+      success: true,
+      user: [user._id, user.name, user.email, user.phone, user.image],
+    });
+  } catch (error) {
+    console.log(error);
+    return res.json({ success: false, message: "Error" });
+  }
+};
+
+export { loginUser, registerUser, getUser, singleUser };

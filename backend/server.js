@@ -4,6 +4,7 @@ import "dotenv/config.js";
 import { connectDB } from "./config/db.js";
 import userRouter from "./routes/userRoute.js";
 import jobRouter from "./routes/jobRoute.js";
+import newsRouter from "./routes/newsRoute.js";
 
 // App config
 const app = express();
@@ -19,6 +20,7 @@ connectDB();
 // Api endpoints
 app.use("/api/user", userRouter);
 app.use("/api/job", jobRouter);
+app.use("/api/news", newsRouter);
 app.use("/images", express.static("uploads"));
 
 //

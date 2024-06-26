@@ -7,6 +7,7 @@ import { LuNewspaper } from "react-icons/lu";
 import { FiFilePlus } from "react-icons/fi";
 import { FaUsers } from "react-icons/fa";
 import { FaUserEdit } from "react-icons/fa";
+import { TbLogout } from "react-icons/tb";
 
 const SideBar = () => {
   return (
@@ -28,14 +29,18 @@ const SideBar = () => {
           <LuNewspaper className="icon" />
           <p>List Articles</p>
         </NavLink>
-        <NavLink to="/users/edit" className="sidebar-option">
+        <NavLink to="/users/add" className="sidebar-option">
           <FaUserEdit className="icon" />
-          <p>Edit User</p>
+          <p>Add User</p>
         </NavLink>
         <NavLink to="/users/list" className="sidebar-option">
           <FaUsers className="icon" />
           <p>List Users</p>
         </NavLink>
+        <div className="sidebar-down">
+          <TbLogout className="icon" />
+          <p>Logout</p>
+        </div>
       </div>
     </div>
   );

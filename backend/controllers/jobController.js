@@ -48,7 +48,7 @@ const removeJob = async (req, res) => {
     const job = await jobModel.findById(req.body.id);
     fs.unlink(`uploads/${job.image}`, () => {});
     await jobModel.findByIdAndDelete(req.body.id);
-    return res.json({ success: true, message: "Article has been deleted" });
+    return res.json({ success: true, message: "The offer has been deleted" });
   } catch (error) {
     console.log(error);
     return res.json({ success: false, message: "Error" });
