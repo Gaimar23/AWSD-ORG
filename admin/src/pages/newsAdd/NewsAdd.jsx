@@ -74,6 +74,7 @@ const NewsAdd = () => {
             <input
               type="text"
               name="title"
+              maxLength="20"
               placeholder="Title"
               className="title-input"
               value={data.title}
@@ -82,6 +83,7 @@ const NewsAdd = () => {
             <input
               type="text"
               name="subtitle"
+              maxLength="20"
               placeholder="Subtitle"
               className="title-input"
               value={data.subtitle}
@@ -90,6 +92,7 @@ const NewsAdd = () => {
             <input
               type="text"
               name="category"
+              maxLength="15"
               placeholder="Category"
               className="title-input"
               value={data.category}
@@ -98,6 +101,7 @@ const NewsAdd = () => {
             <input
               type="text"
               name="author"
+              maxLength="15"
               placeholder="Author"
               className="title-input"
               value={data.author}
