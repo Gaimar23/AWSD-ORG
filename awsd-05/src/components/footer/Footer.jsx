@@ -5,6 +5,7 @@ import { FaFacebookF } from "react-icons/fa";
 import { FaInstagram } from "react-icons/fa";
 import { SlSocialTwitter } from "react-icons/sl";
 import { FaLinkedinIn } from "react-icons/fa";
+import { BsWhatsapp } from "react-icons/bs";
 import { Link } from "react-router-dom";
 //
 import { FaPhoneVolume } from "react-icons/fa6";
@@ -87,8 +88,15 @@ const Footer = () => {
               <h2 className="title">Contact</h2>
               <div className="liens">
                 <div className="lien">
-                  <FaPhoneVolume className="iconContact" />
-                  <span className="desc01">+237 693736463</span>
+                  <BsWhatsapp className="iconContact" />
+                  <span className="desc01">
+                    <Link
+                      to="https://wa.me/237699241151"
+                      style={{ color: "black" }}
+                    >
+                      +237 699241151
+                    </Link>
+                  </span>
                 </div>
                 <div className="lien">
                   <IoMailUnreadOutline className="iconContact" />
@@ -98,7 +106,10 @@ const Footer = () => {
                 </div>
                 <div className="lien">
                   <IoLocationOutline className="iconContact" />
-                  <span className="desc01">Yaoundé, rue 20 res</span>
+                  <span className="desc01" style={{ fontSize: "13px" }}>
+                    {" "}
+                    Douala Yassa, face Synafoc
+                  </span>
                 </div>
               </div>
             </div>

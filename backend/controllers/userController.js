@@ -2,6 +2,7 @@ import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 import validator from "validator";
 import userModel from "../models/userModel.js";
+import fs from "fs";
 
 //
 const createToken = (id) => {
@@ -55,7 +56,7 @@ const registerUser = async (req, res) => {
       });
     }
     if (password.length < 8) {
-      res.json({
+      return res.json({
         success: false,
         message: "The password can't be less than 8 characters",
       });
@@ -108,4 +109,40 @@ const singleUser = async (req, res) => {
   }
 };
 
-export { loginUser, registerUser, getUser, singleUser };
+const updateUser = async (req, res) => {
+  const { id } = req.params;
+  const { name, email, password, phone } = req.body;
+
+  let user_fileName = `${req.file.filename}`;
+  try {
+    const user = await userModel.findById({ _id: id });
+    if (user.image != user_fileName) {
+      fs.unlink(`uploads/${user.image}`, () => {});
+      await userModel.findByIdAndUpdate(id, { image: req.file.filename });
+    }
+
+    if (password.length > 0) {
+      if (password.length < 8) {
+        return res.json({
+          success: false,
+          message: "The password can't be less than 8 characters",
+        });
+      }
+      const salt = await bcrypt.genSalt(10);
+      const hashedPassword = await bcrypt.hash(password, salt);
+
+      await userModel.findByIdAndUpdate(id, { password: hashedPassword });
+    }
+    await userModel.findByIdAndUpdate(id, {
+      name: name,
+      email: email,
+      phone: phone,
+    });
+    return res.json({ success: true, message: "User updated..." });
+  } catch (error) {
+    console.log(error);
+    return res.json({ success: false, message: "Error" });
+  }
+};
+
+export { loginUser, registerUser, getUser, singleUser, updateUser };
