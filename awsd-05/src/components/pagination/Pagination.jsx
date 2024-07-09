@@ -12,6 +12,39 @@ const Pagination = ({
     pages.push(i);
   }
 
+  function numAndActive() {
+    const numbers = document.querySelectorAll(".number");
+    numbers[0].classList.add("active");
+    const active = document.querySelector(".number.active");
+    const currentP = parseInt(active.innerHTML);
+
+    if (currentP == 1) {
+      numbers[0].style.display = "block";
+      numbers[parseInt(numbers.length) - 1].style.display = "block";
+      numbers[currentP].style.display = "block";
+      numbers[currentP + 1].style.display = "block";
+      numbers[currentP + 2].style.display = "block";
+
+      for (let i = 0; i < parseInt(numbers.length) - 1; i++) {
+        if (
+          i != currentP &&
+          i != currentP + 1 &&
+          i != currentP + 2 &&
+          i != parseInt(numbers.length) - 1 &&
+          i != 0
+        ) {
+          numbers[i].style.display = "none";
+        }
+      }
+    }
+  }
+
+  useEffect(() => {
+    setTimeout(() => {
+      numAndActive();
+    }, 500);
+  }, []);
+
   function nonActive(numbers) {
     for (let i = 0; i < numbers.length; i++) {
       if (numbers[i].classList.contains("active")) {
@@ -20,11 +53,110 @@ const Pagination = ({
     }
   }
 
+  function isVisible(numbers, active, currentP) {
+    if (pages.length > 4) {
+      if (currentP > 1 && currentP < pages.length - 2) {
+        numbers[0].style.display = "block";
+        numbers[pages.length - 1].style.display = "block";
+        numbers[currentP - 1].style.display = "block";
+        numbers[currentP + 1].style.display = "block";
+        numbers[currentP].style.display = "block";
+
+        for (let i = 0; i < pages.length - 1; i++) {
+          if (
+            i != currentP - 1 &&
+            i != currentP + 1 &&
+            i != currentP &&
+            i != pages.length - 1 &&
+            i != 0
+          ) {
+            numbers[i].style.display = "none";
+          }
+        }
+      } else if (currentP > 1 && currentP == pages.length - 2) {
+        numbers[0].style.display = "block";
+        numbers[pages.length - 1].style.display = "block";
+        numbers[currentP - 1].style.display = "block";
+        numbers[currentP - 2].style.display = "block";
+        numbers[currentP].style.display = "block";
+
+        for (let i = 0; i < pages.length - 1; i++) {
+          if (
+            i != currentP - 1 &&
+            i != currentP - 2 &&
+            i != currentP &&
+            i != pages.length - 1 &&
+            i != 0
+          ) {
+            numbers[i].style.display = "none";
+          }
+        }
+      } else if (currentP > 1 && currentP == pages.length - 1) {
+        numbers[0].style.display = "block";
+        numbers[pages.length - 1].style.display = "block";
+        numbers[currentP - 1].style.display = "block";
+        numbers[currentP - 2].style.display = "block";
+        numbers[currentP - 2].style.display = "block";
+
+        for (let i = 0; i < pages.length - 1; i++) {
+          if (
+            i != currentP - 1 &&
+            i != currentP - 2 &&
+            i != currentP - 3 &&
+            i != pages.length - 1 &&
+            i != 0
+          ) {
+            numbers[i].style.display = "none";
+          }
+        }
+      } else if (currentP == 1) {
+        numbers[0].style.display = "block";
+        numbers[pages.length - 1].style.display = "block";
+        numbers[currentP].style.display = "block";
+        numbers[currentP + 1].style.display = "block";
+        numbers[currentP + 2].style.display = "block";
+
+        for (let i = 0; i < pages.length - 1; i++) {
+          if (
+            i != currentP &&
+            i != currentP + 1 &&
+            i != currentP + 2 &&
+            i != pages.length - 1 &&
+            i != 0
+          ) {
+            numbers[i].style.display = "none";
+          }
+        }
+      } else if (currentP == pages.length) {
+        numbers[0].style.display = "block";
+        numbers[pages.length - 1].style.display = "block";
+        numbers[currentP - 2].style.display = "block";
+        numbers[currentP - 3].style.display = "block";
+        numbers[currentP - 4].style.display = "block";
+
+        for (let i = 0; i < pages.length - 1; i++) {
+          if (
+            i != currentP - 2 &&
+            i != currentP - 3 &&
+            i != currentP - 4 &&
+            i != pages.length - 1 &&
+            i != 0
+          ) {
+            numbers[i].style.display = "none";
+          }
+        }
+      }
+    }
+  }
+
   function thePage(number, index) {
-    setCurrentPage(number);
     const numbers = document.querySelectorAll(".number");
+    const active = document.querySelector(".number.active");
+    const currentP = parseInt(active.innerHTML);
+    setCurrentPage(number);
     nonActive(numbers);
     numbers[index].classList.add("active");
+    isVisible(numbers, active, currentP);
   }
 
   function nextPage() {
@@ -35,12 +167,7 @@ const Pagination = ({
       nonActive(numbers);
       setCurrentPage(currentP + 1);
       numbers[currentP].classList.add("active");
-      if (currentP >= 3) {
-        for (let i = currentP; i > 1; i--) {
-          numbers[i - 2].style.display = "none";
-          console.log("count:", i);
-        }
-      }
+      isVisible(numbers, active, currentP);
     }
   }
 
@@ -52,26 +179,9 @@ const Pagination = ({
       nonActive(numbers);
       setCurrentPage(currentP - 1);
       numbers[currentP - 2].classList.add("active");
-      if (currentP < 3) {
-        console.log("currentP>=3 true");
-        for (let i = currentP - 1; i >= 4; i--) {
-          numbers[i - 1].style.display = "none";
-          console.log("count:", i);
-        }
-        for (let i = 0; i >= 4; i++) {
-          numbers[i].style.display = "block";
-          console.log("count:", i);
-        }
-      }
+      isVisible(numbers, active, currentP);
     }
   }
-
-  useEffect(() => {
-    setTimeout(() => {
-      const numbers = document.querySelectorAll(".number");
-      numbers[0].classList.add("active");
-    }, 1500);
-  }, []);
 
   return (
     <div className="pagination">
