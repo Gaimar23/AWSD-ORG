@@ -191,7 +191,6 @@ const Pagination = ({
             <span
               className="number"
               key={index}
-              //   onClick={() => setCurrentPage(number)}
               onClick={() => thePage(number, index)}
             >
               {number}

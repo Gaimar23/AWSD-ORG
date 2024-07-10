@@ -7,6 +7,7 @@ import author from "../../assets/images/team/teammate01.png";
 import Footer from "../../components/footer/Footer";
 import axios from "axios";
 import Pagination from "../../components/pagination/Pagination";
+import ArticlePost from "../../components/articlePost/ArticlePost";
 
 const News = () => {
   const [articles, setArticles] = useState([]);
@@ -31,6 +32,7 @@ const News = () => {
   return (
     <div className="news">
       <Navbar />
+      <ArticlePost />
       <div className="global-container">
         <hr className="navbar-bottom" />
         <h1>
