@@ -13,6 +13,14 @@ const News = () => {
   const [articles, setArticles] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [postPerPage, setPostPerPage] = useState(2);
+  const [showArticle, setShowArticle] = useState(false);
+  const [openArticle, setOpenArticle] = useState(false);
+  // reand Article
+  const [articlePost, setArticlePost] = useState("");
+  const [theArticlePost, setTheArticlePost] = useState("");
+  const [countContainer, setCountContainer] = useState(0);
+  const [countArticle, setCountArticle] = useState(0);
+  //
 
   useEffect(() => {
     const collectData = async () => {
@@ -29,10 +37,40 @@ const News = () => {
   const lastPostIndex = currentPage * postPerPage;
   const firstPostIndex = lastPostIndex - postPerPage;
   const currentPosts = articles.slice(firstPostIndex, lastPostIndex);
+
+  const displayArticle = () => {
+    articlePost.style.display = "flex";
+  };
+
+  const handleArticle = (id) => {
+    articles.forEach((item) => {
+      if (item._id == id) {
+        setOpenArticle(item);
+      }
+    });
+    displayArticle();
+  };
+
   return (
     <div className="news">
       <Navbar />
-      <ArticlePost />
+      <ArticlePost
+        setShowArticle={setShowArticle}
+        image={openArticle?.image}
+        title={openArticle?.title}
+        subtitle={openArticle?.subtitle}
+        category={openArticle?.category}
+        author={openArticle?.author}
+        imageAuthor={author}
+        article={openArticle?.article}
+        setTheArticlePost={setTheArticlePost}
+        setArticlePost={setArticlePost}
+        setCountArticle={setCountArticle}
+        setCountContainer={setCountContainer}
+        countArticle={countArticle}
+        countContainer={countContainer}
+        articlePost={articlePost}
+      />
       <div className="global-container">
         <hr className="navbar-bottom" />
         <h1>
@@ -61,7 +99,11 @@ const News = () => {
             ) : (
               currentPosts.map((item, index) => {
                 return (
-                  <div className="article" key={index}>
+                  <div
+                    className="article"
+                    key={index}
+                    onClick={() => handleArticle(item._id)}
+                  >
                     <div className="head-image">
                       <div className="image">
                         <img
@@ -84,6 +126,7 @@ const News = () => {
                         ? item.article.slice(0, 202) + "......"
                         : item.article}
                     </div>
+                    <button className="article-btn">Consulter</button>
                   </div>
                 );
               })

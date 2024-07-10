@@ -1,62 +1,87 @@
 import React, { useEffect, useState } from "react";
 import "./ArticlePost.scss";
+import { motion } from "framer-motion";
 
-const ArticlePost = () => {
-  const [articlePost, setArticlePost] = useState("");
+const ArticlePost = ({
+  setShowArticle,
+  image,
+  title,
+  subtitle,
+  category,
+  author,
+  article,
+  imageAuthor,
+  setArticlePost,
+  setTheArticlePost,
+  setCountContainer,
+  setCountArticle,
+  countContainer,
+  countArticle,
+  articlePost,
+}) => {
+  // const [articlePost, setArticlePost] = useState("");
+  // const [theArticlePost, setTheArticlePost] = useState("");
+  // const [countContainer, setCountContainer] = useState(0);
+  // const [countArticle, setCountArticle] = useState(0);
 
   useEffect(() => {
     setTimeout(() => {
       setArticlePost(document.getElementById("article-post"));
+      setTheArticlePost(document.getElementById("the-article-post"));
     }, 1000);
   }, []);
 
-  //   const handlePost = () => {
-  //     console.log("okay I see");
-  //   };
   document.body.onclick = () => {
-    if (!articlePost) {
+    console.log("container:", countContainer);
+    console.log("article:", countArticle);
+    if (countContainer != countArticle) {
+      articlePost.style.display = "none";
+      setShowArticle(false);
     }
-    console.log("okay I see");
+    setCountContainer(0);
+    setCountArticle(0);
   };
+
+  const clickContainerCounter = () => {
+    setCountContainer((prev) => prev + 1);
+  };
+
+  const clickArticleCounter = () => {
+    setCountArticle((prev) => prev + 1);
+  };
+
   return (
-    <div className="article-post">
-      <div className="container" id="article-post">
+    <div
+      className="article-post"
+      id="article-post"
+      onClick={clickContainerCounter}
+    >
+      <div
+        className="container"
+        id="the-article-post"
+        onClick={clickArticleCounter}
+      >
         <div className="sub-container">
           <div className="article">
             <div className="head-image">
               <div className="image">
-                <img src="" alt="" />
+                <img src={`http://localhost:5000/images/${image}`} alt="" />
               </div>
               <div className="image-title">
-                <h1 className="title">My Son and ...</h1>
-                <p className="subtitle">Family legacy</p>
-                <span className="category">Family</span>
+                <h1 className="title">
+                  {title?.length < 13 ? title + " ......" : title}
+                </h1>
+                <p className="subtitle">{subtitle}</p>
+                <span className="category">{category}</span>
                 <div className="author">
-                  <img src="" alt="" />
-                  <span className="name">John</span>
+                  <img src={imageAuthor} alt="" />
+                  <span className="name">{author}</span>
                 </div>
               </div>
             </div>
-            <div className="article-description">
-              Once upon a time , there were some people known and feared by all
-              because of their ability to move onOnce upon a time , there were
-              some people known and feared by all because of their ability to
-              move on Once upon a time , there were some people known and feared
-              by all because of their ability to move onOnce upon a time , there
-              were some people known and feared by all because of their ability
-              to move on Once upon a time , there were some people known and
-              feared by all because of their ability to move onOnce upon a time
-              , there were some people known and feared by all because of their
-              ability to move on
-            </div>
+            <div className="article-description">{article}</div>
           </div>
         </div>
-        {/* <Pagination
-          totalPots={articles.length}
-          postsPerPage={postPerPage}
-          setCurrentPage={setCurrentPage}
-          currentPage={currentPage}
-        /> */}
       </div>
     </div>
   );

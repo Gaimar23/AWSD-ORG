@@ -27,9 +27,11 @@
     background-color: rgba(0, 0, 0, 0.308);
     z-index: 100;
 
-    display: flex;
+    // display: flex;
+    display: none;
     align-items: center;
     justify-content: center;
+    animation: container-animation 0.5s linear;
 
     .container{
         z-index: 200;
@@ -37,7 +39,7 @@
         border-radius: 5px ;
         padding: 10px 10px;
         background-color: white;
-    
+        animation: article-animation 1.5s linear;
         width: 50%;
         height: 85vh;
 
@@ -134,6 +136,7 @@
                     margin-top: 20px;
                     color: gray;
                     font-size: 17px;
+                    padding: 0 25px;
                     padding-bottom: 25px;
                 }
             }
@@ -180,7 +183,7 @@
     
                             img{
                                 height: 200px;
-                                width: 230px;
+                                width: 210px;
                                 background-color: rgb(241, 247, 241);
                             }
                         }
@@ -193,17 +196,17 @@
                             align-items: center;
     
                             .title{
-                                font-size: 30px;
+                                font-size: 25px;
                                 font-weight: 700;
                                 color: black;
-                                line-height: 1.35;
+                                line-height: 1.15;
                             }
     
                             .subtitle{
-                                font-size: 20px;
+                                font-size: 17px;
                                 font-weight: 500;
                                 color: gray;
-                                margin: 10px 0;
+                                margin: 8px 0;
                             }
     
                             .category{
@@ -301,10 +304,10 @@
                             }
     
                             .subtitle{
-                                font-size: 15px;
+                                font-size: 14px;
                                 font-weight: 500;
                                 color: gray;
-                                margin: 10px 0;
+                                margin: 7px 0;
                             }
     
                             .category{
@@ -321,8 +324,8 @@
                                 gap: 8px;
     
                                 img{
-                                    height: 40px;
-                                    width: 40px;
+                                    height: 35px;
+                                    width: 35px;
                                     border-radius: 50%;
                                 }
     
@@ -401,6 +404,91 @@
                             }
     
                             .subtitle{
+                                font-size: 8px;
+                                margin: 4px 0;
+                            }
+    
+                            .category{
+                                margin-bottom: 4px;
+                                font-size: 8px;
+                            }
+    
+                            .author{    
+                                img{
+                                    height: 20px;
+                                    width: 20px;
+                                }
+    
+                                .name{
+                                    font-size: 8px;
+                                }
+                            }
+                        }
+                    }
+    
+                    .article-description{
+                        font-size: 16px;
+                        padding: 0 15px;
+                    }
+                }
+                
+            }
+        }
+    
+    }   
+}
+
+// @media only screen and (max-width: 650px){
+// }
+
+@media only screen and (max-width: 480px){
+
+    ::-webkit-scrollbar {
+        width: 0px;
+    }
+    
+
+    .article-post{
+        width: 100%;
+        height: 100vh;
+        
+        .container{
+            width: 80%;
+            height: 75vh;
+        
+            .sub-container{
+                height: 100%;
+                width: 100%;
+    
+                .article{
+                    padding: 10px;    
+                    padding-top: 20px;
+                    width: 290px;
+                    height: 500px;
+    
+                    .head-image{
+                        display: grid;
+                        grid-template-columns: 1fr 1fr;
+                        gap: 10px;
+    
+                        .image{
+    
+                            img{
+                                height: 110px;
+                                width: 150px;
+                                background-color: rgb(241, 247, 241);
+                            }
+                        }
+    
+                        .image-title{
+    
+                            .title{
+                                font-size: 19px;
+                                color: black;
+                                line-height: 1.11;
+                            }
+    
+                            .subtitle{
                                 font-size: 10px;
                                 margin: 5px 0;
                             }
@@ -424,27 +512,25 @@
                     }
     
                     .article-description{
-                        font-size: 16px;
+                        font-size: 15px;
                     }
                 }
                 
             }
         }
     
-    }   
+    }
+
 }
 
-// @media only screen and (max-width: 650px){
-// }
-
-@media only screen and (max-width: 480px){
+@media only screen and (max-width: 375px){
     .article-post{
         width: 100%;
         height: 100vh;
         
         .container{
             width: 80%;
-            height: 85vh;
+            height: 75vh;
         
             .sub-container{
                 height: 100%;
@@ -454,7 +540,7 @@
                     padding: 10px;    
                     padding-top: 20px;
                     width: 250px;
-                    height: 500px;
+                    height: 450px;
     
                     .head-image{
                         display: grid;
@@ -511,4 +597,15 @@
     
     }
 
+}
+
+@keyframes container-animation {
+    0%{opacity: 0;}
+    100%{opacity: 1;}
+}
+
+@keyframes article-animation {
+    0%{transform: scale(0);transform: rotateZ(0deg);}
+    50%{transform: scale(0.5); transform: rotateZ(380deg);}
+    100%{transform: scale(1);transform: rotateZ(0deg);}
 }
