@@ -12,7 +12,7 @@
   }
   
   ::-webkit-scrollbar-thumb {
-    background: rgb(184, 182, 182);
+    background: rgba(175, 174, 174, 0.753);
     border-radius: 10px;
   }
   
@@ -32,6 +32,12 @@
     align-items: center;
     justify-content: center;
     animation: container-animation 0.5s linear;
+
+
+    // ::-webkit-scrollbar {
+    //     width: 5px;
+    //   }
+    
 
     .container{
         z-index: 200;
@@ -73,7 +79,7 @@
                         img{
                             height: 280px;
                             width: 300px;
-                            border-radius: 4px 0 4px 0;
+                            border-radius: 40px 0 4px 0;
                             padding: 10px 0 0 10px;
                             background-color: rgb(241, 247, 241);
                             transition: all 0.3s ease;
@@ -96,6 +102,7 @@
                             font-weight: 700;
                             color: black;
                             line-height: 1.35;
+                            opacity: 0.7;
                         }
 
                         .subtitle{

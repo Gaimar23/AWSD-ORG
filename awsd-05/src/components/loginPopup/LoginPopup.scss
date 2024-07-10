@@ -5,6 +5,7 @@
   height: 100%;
   background-color: #00000080;
   display: grid;
+  animation: container-animation 0.5s linear;
 
   .login-container {
     place-self: center;
@@ -84,4 +85,9 @@
       }
     }
   }
+}
+
+@keyframes container-animation {
+  0%{opacity: 0;}
+  100%{opacity: 1;}
 }
