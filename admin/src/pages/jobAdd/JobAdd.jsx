@@ -1,11 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./JobAdd.scss";
 import { assets } from "../../assets/assets";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { DataContext } from "../../context/DataContext";
 
 const JobAdd = () => {
   const [image, setImage] = useState(false);
+  const { list, setJobList } = useContext(DataContext);
   const [data, setData] = useState({
     poste: "",
     department: "",
@@ -56,6 +58,7 @@ const JobAdd = () => {
       });
       setImage(false);
       toast.success(response.data.message);
+      list();
     } else {
       toast.error(response.data.message);
     }

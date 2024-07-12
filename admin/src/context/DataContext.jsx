@@ -58,6 +58,8 @@ const DataContextProvider = (props) => {
     getArticles,
     removeArticle,
     listArticles,
+    setListArticles,
+    setJobList,
   };
 
   return (

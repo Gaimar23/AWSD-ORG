@@ -15,7 +15,7 @@ const NewsAdd = () => {
     article: "",
   });
 
-  const { url } = useContext(DataContext);
+  const { url, getArticles, setListArticles } = useContext(DataContext);
 
   const handleOnChange = (event) => {
     const { name, value } = event.target;
@@ -43,6 +43,7 @@ const NewsAdd = () => {
       });
       setImage(false);
       toast.success(response.data.message);
+      getArticles();
     } else {
       toast.error(response.data.message);
     }

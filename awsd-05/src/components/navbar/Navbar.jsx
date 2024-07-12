@@ -354,7 +354,7 @@ const Navbar = () => {
               </ul>
             </li>
             <li className="main">
-              <Link to="/recrutement" className="LinkNav">
+              <Link to="/news" className="LinkNav">
                 {translator.bottom.navigation[2]}
               </Link>
             </li>
