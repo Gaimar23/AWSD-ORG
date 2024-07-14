@@ -54,7 +54,7 @@ const Pagination = ({ totalPots, postsPerPage, setCurrentPage }) => {
   useEffect(() => {
     setTimeout(() => {
       initialization();
-    }, 3000);
+    }, 2500);
   }, []);
 
   function unselectPages(numbers) {

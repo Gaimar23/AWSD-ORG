@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext } from "react";
 import "./TableProfil.scss";
 import { RxCross2 } from "react-icons/rx";
 import { IoIosLogOut } from "react-icons/io";
 import { motion } from "framer-motion";
+import { StoreContext } from "../../utilis/context/StoreContext";
 
 const TableProfil = ({ setShowTableProfil, info, logOut }) => {
+  const { url } = useContext(StoreContext);
   // const [tableProfil, setTableProfil] = useState("");
 
   // useEffect(() => {
@@ -40,12 +42,18 @@ const TableProfil = ({ setShowTableProfil, info, logOut }) => {
 
         <div className="sub-container">
           <div className="image-container">
-            <img src="" alt="" />
+            <img
+              src={info[4] === "" ? "" : `${url}/images/${info[4]}`}
+              alt=""
+              className="img-profil"
+            />
           </div>
           <h3>{info ? info[1] : ""}</h3>
           <span className="email">{info ? info[3] : ""}</span>
-          <span className="phone">{info ? info[2] : ""}</span>
-          <span className="admin">Administration</span>
+          <span className="phone">
+            {info[2] != "" ? info[2] : "+237 000000000"}
+          </span>
+          {info[0] === "a" && <span className="admin">Administration</span>}
           <button>Modifier mon profil</button>
         </div>
         <div className="logOut" onClick={logOut}>

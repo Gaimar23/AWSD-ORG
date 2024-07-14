@@ -95,6 +95,14 @@
         top: -20%;
         left: 50%;
         transform: translateX(-50%);
+
+        .img-profil{
+          position: absolute;
+          height: 100%;
+          width: 100%;
+          border-radius: 50%;
+          object-fit: cover;
+        }
       }
 
       h3 {
@@ -133,8 +141,11 @@
         font-size: 14px;
         font-weight: 600;
         margin: 7px 0;
-        color: #3b3b3b;
+        color: #ffffff;
         cursor: pointer;
+        background-color: green;
+        padding: 5px 8px;
+        border-radius: 5px;
         transition: 0.3s ease;
 
         &:hover {

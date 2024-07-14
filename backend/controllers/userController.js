@@ -22,16 +22,11 @@ const loginUser = async (req, res) => {
     }
 
     const token = createToken(user._id);
-    let status = false;
-
-    if (user.status === "admin") {
-      status = true;
-    }
 
     return res.json({
       success: true,
       token,
-      info: [status, user.name, user.phone, user.email],
+      info: [user.status, user.name, user.phone, user.email, user.image],
     });
   } catch (error) {
     console.log(error);
@@ -87,7 +82,13 @@ const checkStatus = async () => {};
 const getUser = async (req, res) => {
   try {
     let userData = await userModel.findById({ _id: req.body.userId.id });
-    let info = [userData.status, userData.name, userData.phone, userData.email];
+    let info = [
+      userData.status,
+      userData.name,
+      userData.phone,
+      userData.email,
+      userData.image,
+    ];
     return res.json({ success: true, info });
   } catch (error) {
     console.log(error);

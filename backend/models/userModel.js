@@ -8,7 +8,7 @@ const userSchema = mongoose.Schema(
     password: { type: String, required: true },
     image: { type: String, default: "" },
     phone: { type: String, default: "" },
-    status: { type: String, default: "user" },
+    status: { type: String, default: "u" },
   },
   { minimize: false }
 );

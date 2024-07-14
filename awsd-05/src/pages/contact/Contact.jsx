@@ -55,9 +55,9 @@ const Contact = () => {
             </div>
             <h3 className="title">Localisation</h3>
             <div className="details">
-              <span>Yaoundé, Cameroun</span>
+              <span>Douala Yassa, face Synafoc</span>
               <span>Rue 60e station le metro</span>
-              <span>BP: 237 - Yaoundé, Cameroun</span>
+              <span>BP: 237 - Douala, Cameroun</span>
             </div>
           </div>
           <div className="right">
@@ -66,7 +66,7 @@ const Contact = () => {
             </div>
             <h3 className="title">Contact & Email</h3>
             <div className="details">
-              <span>+237 679 56 80 11 / +237 693 30 20 06</span>
+              <span>+237 699 24 11 51 / +237 699 24 11 51</span>
               <span>administration@afrique-awsd.org</span>
             </div>
           </div>

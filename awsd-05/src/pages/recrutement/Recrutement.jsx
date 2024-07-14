@@ -5,6 +5,7 @@ import SwiperHiring from "../../components/swiperHiring/SwiperHiring";
 import logo from "../../assets/images/contact/contact01.jpg";
 import axios from "axios";
 import PaginationJobs from "../../components/paginationJobs/PaginationJobs";
+import Footer from "../../components/footer/Footer";
 
 const Recrutement = () => {
   const [jobs, setJobs] = useState([]);
@@ -124,6 +125,7 @@ const Recrutement = () => {
           )}
         </div>
       </div>
+      <Footer />
     </div>
   );
 };

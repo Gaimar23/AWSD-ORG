@@ -40,7 +40,7 @@ const LoginPopup = ({ setShowLogin }) => {
       setToken(response.data.token);
       localStorage.setItem("token", response.data.token);
       setShowLogin(false);
-      toast.success(`Eh Salut ${currentUser[1]}`);
+      toast.success(`Eh Salut ${response.data.info[1]}`);
     } else {
       if (currState === "Login") {
         toast.error("Identifiants incorrects");

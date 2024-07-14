@@ -34,7 +34,7 @@ const News = () => {
     collectData();
     setTimeout(() => {
       setLoading(false);
-    }, 2950);
+    }, 2450);
   }, []);
 
   let isArticle = articles.length > 0 ? true : false;

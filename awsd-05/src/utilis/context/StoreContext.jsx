@@ -18,7 +18,6 @@ const StoreContextProvider = (props) => {
       {},
       { headers: { token } }
     );
-    console.log("response.data token:", response.data);
     setCurrentUser(response.data.info);
   };
 
