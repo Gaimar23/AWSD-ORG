@@ -68,7 +68,11 @@ const registerUser = async (req, res) => {
 
     const user = await newUser.save();
     const token = createToken(user._id);
-    return res.json({ success: true, token });
+    return res.json({
+      success: true,
+      token,
+      info: [user.status, user.name, user.phone, user.email, user.image],
+    });
   } catch (error) {
     console.log(error);
     return res.json({ success: false, message: "An error occured" });
@@ -146,4 +150,17 @@ const updateUser = async (req, res) => {
   }
 };
 
-export { loginUser, registerUser, getUser, singleUser, updateUser };
+const deleteUser = async (req, res) => {
+  const { id } = req.body;
+  try {
+    const user = await userModel.findById(id);
+    fs.unlink(`uploads/${user.image}`, () => {});
+    await userModel.findByIdAndDelete(id);
+    return res.json({ success: true, message: "User deleted..." });
+  } catch (error) {
+    console.log(error);
+    return res.json({ success: false, message: "error" });
+  }
+};
+
+export { loginUser, registerUser, getUser, singleUser, updateUser, deleteUser };
