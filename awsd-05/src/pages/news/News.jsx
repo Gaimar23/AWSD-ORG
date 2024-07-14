@@ -21,8 +21,10 @@ const News = () => {
   const [countContainer, setCountContainer] = useState(0);
   const [countArticle, setCountArticle] = useState(0);
   //
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    setLoading(true);
     const collectData = async () => {
       const response = await axios.get("http://localhost:5000/api/news/list");
       if (response.data.success) {
@@ -30,6 +32,9 @@ const News = () => {
       }
     };
     collectData();
+    setTimeout(() => {
+      setLoading(false);
+    }, 2950);
   }, []);
 
   let isArticle = articles.length > 0 ? true : false;
@@ -87,7 +92,8 @@ const News = () => {
         </h1>
         <div className="container">
           <div className="sub-container">
-            {!isArticle ? (
+            {/* {!isArticle ? ( */}
+            {loading ? (
               <>
                 <div className="loading-container">
                   <div className="loading"></div>

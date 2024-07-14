@@ -6,7 +6,6 @@ const PaginationJobs = ({ totalPots, postsPerPage, setCurrentPage }) => {
   for (let i = 1; i <= Math.ceil(totalPots / postsPerPage); i++) {
     pages.push(i);
   }
-
   const [numbers, setNumbers] = useState([]);
   const [active, setActive] = useState(false);
   const [activePage, setActivePage] = useState(0);
@@ -16,34 +15,45 @@ const PaginationJobs = ({ totalPots, postsPerPage, setCurrentPage }) => {
     document.querySelectorAll(".number")[0].classList.add("active");
     setActive(document.querySelector(".number.active"));
     setActivePage(parseInt(document.querySelector(".number.active").innerHTML));
+    isVisible(
+      document.querySelectorAll(".number"),
+      document.querySelector(".number.active"),
+      parseInt(document.querySelector(".number.active").innerHTML)
+    );
+    const theActivePage = parseInt(
+      document.querySelector(".number.active").innerHTML
+    );
+    const arrayPages = document.querySelectorAll(".number");
+    if (arrayPages.length > 4) {
+      arrayPages[0].style.display = "block";
+      arrayPages[theActivePage].style.display = "block";
+      arrayPages[theActivePage + 1].style.display = "block";
+      arrayPages[theActivePage + 2].style.display = "block";
 
-    // const currentP = parseInt(active.innerHTML);
-
-    // if (currentP == 1) {
-    //   numbers[0].style.display = "block";
-    //   numbers[parseInt(numbers.length) - 1].style.display = "block";
-    //   numbers[currentP].style.display = "block";
-    //   numbers[currentP + 1].style.display = "block";
-    //   numbers[currentP + 2].style.display = "block";
-
-    //   for (let i = 0; i < parseInt(numbers.length) - 1; i++) {
-    //     if (
-    //       i != currentP &&
-    //       i != currentP + 1 &&
-    //       i != currentP + 2 &&
-    //       i != parseInt(numbers.length) - 1 &&
-    //       i != 0
-    //     ) {
-    //       numbers[i].style.display = "none";
-    //     }
-    //   }
-    // }
+      for (let i = 0; i < arrayPages.length; i++) {
+        if (
+          i != 0 &&
+          i != theActivePage &&
+          i != theActivePage + 1 &&
+          i != theActivePage + 2
+        ) {
+          arrayPages[i].style.display = "none";
+        }
+      }
+    }
   }
+
+  const reposition = (isVisible) => {
+    const theActivePage = parseInt(
+      document.querySelector(".number.active").innerHTML
+    );
+    isVisible(numbers, active, theActivePage);
+  };
 
   useEffect(() => {
     setTimeout(() => {
       initialization();
-    }, 1000);
+    }, 3000);
   }, []);
 
   function unselectPages(numbers) {
@@ -54,94 +64,165 @@ const PaginationJobs = ({ totalPots, postsPerPage, setCurrentPage }) => {
     }
   }
 
-  function isVisible(numbers, active, currentP) {
+  function isVisible(numbers, active, theActivePage) {
     if (pages.length > 4) {
-      if (currentP > 1 && currentP < pages.length - 2) {
+      if (theActivePage == pages[0]) {
         numbers[0].style.display = "block";
-        numbers[pages.length - 1].style.display = "block";
-        numbers[currentP - 1].style.display = "block";
-        numbers[currentP + 1].style.display = "block";
-        numbers[currentP].style.display = "block";
-
-        for (let i = 0; i < pages.length - 1; i++) {
+        numbers[theActivePage].style.display = "block";
+        numbers[theActivePage + 1].style.display = "block";
+        numbers[theActivePage + 2].style.display = "block";
+        for (let i = 0; i < pages.length; i++) {
           if (
-            i != currentP - 1 &&
-            i != currentP + 1 &&
-            i != currentP &&
-            i != pages.length - 1 &&
-            i != 0
+            i != 0 &&
+            i != theActivePage &&
+            i != theActivePage + 1 &&
+            i != theActivePage + 2
           ) {
             numbers[i].style.display = "none";
           }
         }
-      } else if (currentP > 1 && currentP == pages.length - 2) {
+      } else if (theActivePage == pages[0] + 1) {
         numbers[0].style.display = "block";
-        numbers[pages.length - 1].style.display = "block";
-        numbers[currentP - 1].style.display = "block";
-        numbers[currentP - 2].style.display = "block";
-        numbers[currentP].style.display = "block";
-
-        for (let i = 0; i < pages.length - 1; i++) {
+        numbers[theActivePage - 1].style.display = "block";
+        numbers[theActivePage].style.display = "block";
+        numbers[theActivePage + 1].style.display = "block";
+        for (let i = 0; i < pages.length; i++) {
           if (
-            i != currentP - 1 &&
-            i != currentP - 2 &&
-            i != currentP &&
-            i != pages.length - 1 &&
-            i != 0
+            i != 0 &&
+            i != theActivePage - 1 &&
+            i != theActivePage &&
+            i != theActivePage + 1
           ) {
             numbers[i].style.display = "none";
           }
         }
-      } else if (currentP > 1 && currentP == pages.length - 1) {
-        numbers[0].style.display = "block";
-        numbers[pages.length - 1].style.display = "block";
-        numbers[currentP - 1].style.display = "block";
-        numbers[currentP - 2].style.display = "block";
-        numbers[currentP - 2].style.display = "block";
+      } else if (theActivePage == pages[pages.length - 1]) {
+        numbers[theActivePage - 1].style.display = "block";
+        numbers[theActivePage - 2].style.display = "block";
+        numbers[theActivePage - 3].style.display = "block";
+        numbers[theActivePage - 4].style.display = "block";
 
-        for (let i = 0; i < pages.length - 1; i++) {
+        for (let i = 0; i < pages.length; i++) {
           if (
-            i != currentP - 1 &&
-            i != currentP - 2 &&
-            i != currentP - 3 &&
-            i != pages.length - 1 &&
-            i != 0
+            i != theActivePage - 1 &&
+            i != theActivePage - 2 &&
+            i != theActivePage - 3 &&
+            i != theActivePage - 4
           ) {
             numbers[i].style.display = "none";
           }
         }
-      } else if (currentP == 1) {
-        numbers[0].style.display = "block";
-        numbers[pages.length - 1].style.display = "block";
-        numbers[currentP].style.display = "block";
-        numbers[currentP + 1].style.display = "block";
-        numbers[currentP + 2].style.display = "block";
+      } else if (theActivePage == pages[pages.length - 2]) {
+        numbers[theActivePage].style.display = "block";
+        numbers[theActivePage - 1].style.display = "block";
+        numbers[theActivePage - 2].style.display = "block";
+        numbers[theActivePage - 3].style.display = "block";
 
-        for (let i = 0; i < pages.length - 1; i++) {
+        for (let i = 0; i < pages.length; i++) {
           if (
-            i != currentP &&
-            i != currentP + 1 &&
-            i != currentP + 2 &&
-            i != pages.length - 1 &&
-            i != 0
+            i != theActivePage &&
+            i != theActivePage - 1 &&
+            i != theActivePage - 2 &&
+            i != theActivePage - 3
           ) {
             numbers[i].style.display = "none";
           }
         }
-      } else if (currentP == pages.length) {
-        numbers[0].style.display = "block";
-        numbers[pages.length - 1].style.display = "block";
-        numbers[currentP - 2].style.display = "block";
-        numbers[currentP - 3].style.display = "block";
-        numbers[currentP - 4].style.display = "block";
+      } else {
+        numbers[theActivePage - 2].style.display = "block";
+        numbers[theActivePage - 1].style.display = "block";
+        numbers[theActivePage].style.display = "block";
+        numbers[theActivePage + 1].style.display = "block";
 
-        for (let i = 0; i < pages.length - 1; i++) {
+        for (let i = 0; i < pages.length; i++) {
           if (
-            i != currentP - 2 &&
-            i != currentP - 3 &&
-            i != currentP - 4 &&
-            i != pages.length - 1 &&
-            i != 0
+            i != theActivePage - 2 &&
+            i != theActivePage - 1 &&
+            i != theActivePage &&
+            i != theActivePage + 1
+          ) {
+            numbers[i].style.display = "none";
+          }
+        }
+      }
+    }
+  }
+  function isVisibleBack(numbers, active, theActivePage) {
+    if (pages.length > 4) {
+      if (theActivePage == pages[0]) {
+        numbers[0].style.display = "block";
+        numbers[theActivePage].style.display = "block";
+        numbers[theActivePage + 1].style.display = "block";
+        numbers[theActivePage + 2].style.display = "block";
+        for (let i = 0; i < pages.length; i++) {
+          if (
+            i != 0 &&
+            i != theActivePage &&
+            i != theActivePage + 1 &&
+            i != theActivePage + 2
+          ) {
+            numbers[i].style.display = "none";
+          }
+        }
+      } else if (theActivePage == pages[0] + 1) {
+        numbers[0].style.display = "block";
+        numbers[theActivePage - 1].style.display = "block";
+        numbers[theActivePage].style.display = "block";
+        numbers[theActivePage + 1].style.display = "block";
+        for (let i = 0; i < pages.length; i++) {
+          if (
+            i != 0 &&
+            i != theActivePage - 1 &&
+            i != theActivePage &&
+            i != theActivePage + 1
+          ) {
+            numbers[i].style.display = "none";
+          }
+        }
+      } else if (theActivePage == pages[pages.length - 1]) {
+        numbers[theActivePage - 1].style.display = "block";
+        numbers[theActivePage - 2].style.display = "block";
+        numbers[theActivePage - 3].style.display = "block";
+        numbers[theActivePage - 4].style.display = "block";
+
+        for (let i = 0; i < pages.length; i++) {
+          if (
+            i != theActivePage - 1 &&
+            i != theActivePage - 2 &&
+            i != theActivePage - 3 &&
+            i != theActivePage - 4
+          ) {
+            numbers[i].style.display = "none";
+          }
+        }
+      } else if (theActivePage == pages[pages.length - 2]) {
+        numbers[theActivePage].style.display = "block";
+        numbers[theActivePage - 1].style.display = "block";
+        numbers[theActivePage - 2].style.display = "block";
+        numbers[theActivePage - 3].style.display = "block";
+
+        for (let i = 0; i < pages.length; i++) {
+          if (
+            i != theActivePage &&
+            i != theActivePage - 1 &&
+            i != theActivePage - 2 &&
+            i != theActivePage - 3
+          ) {
+            numbers[i].style.display = "none";
+          }
+        }
+      } else {
+        numbers[theActivePage - 2].style.display = "block";
+        numbers[theActivePage - 1].style.display = "block";
+        numbers[theActivePage].style.display = "block";
+        numbers[theActivePage + 1].style.display = "block";
+
+        for (let i = 0; i < pages.length; i++) {
+          if (
+            i != theActivePage - 2 &&
+            i != theActivePage - 1 &&
+            i != theActivePage &&
+            i != theActivePage + 1
           ) {
             numbers[i].style.display = "none";
           }
@@ -153,15 +234,22 @@ const PaginationJobs = ({ totalPots, postsPerPage, setCurrentPage }) => {
   function thePage(number, index) {
     setActive(document.querySelector(".number.active"));
     setActivePage(parseInt(document.querySelector(".number.active").innerHTML));
+    const theActivePage = parseInt(
+      document.querySelector(".number.active").innerHTML
+    );
     setCurrentPage(number);
     unselectPages(numbers);
     numbers[index].classList.add("active");
-    // isVisible(numbers, active, currentP);
+    isVisible(numbers, active, theActivePage);
+    reposition(isVisible);
   }
 
   function nextPage() {
     setActive(document.querySelector(".number.active"));
     setActivePage(parseInt(document.querySelector(".number.active").innerHTML));
+    const theActivePage = parseInt(
+      document.querySelector(".number.active").innerHTML
+    );
     if (
       parseInt(document.querySelector(".number.active").innerHTML) <
       pages[pages.length - 1]
@@ -170,13 +258,17 @@ const PaginationJobs = ({ totalPots, postsPerPage, setCurrentPage }) => {
       unselectPages(numbers);
       setCurrentPage(number + 1);
       numbers[number].classList.add("active");
-      // isVisible(numbers, active, currentP);
+      isVisible(numbers, active, theActivePage);
     }
+    reposition(isVisible);
   }
 
   function prevPage() {
     setActive(document.querySelector(".number.active"));
     setActivePage(parseInt(document.querySelector(".number.active").innerHTML));
+    const theActivePage = parseInt(
+      document.querySelector(".number.active").innerHTML
+    );
     if (
       parseInt(document.querySelector(".number.active").innerHTML) > pages[0]
     ) {
@@ -184,8 +276,9 @@ const PaginationJobs = ({ totalPots, postsPerPage, setCurrentPage }) => {
       unselectPages(numbers);
       setCurrentPage(number - 1);
       numbers[number - 2].classList.add("active");
-      // isVisible(numbers, active, currentP);
+      isVisible(numbers, active, theActivePage);
     }
+    reposition(isVisibleBack);
   }
 
   return (

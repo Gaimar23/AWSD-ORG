@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import "./ArticlePost.scss";
-import { motion } from "framer-motion";
 
 const ArticlePost = ({
   setShowArticle,
@@ -19,11 +18,6 @@ const ArticlePost = ({
   countArticle,
   articlePost,
 }) => {
-  // const [articlePost, setArticlePost] = useState("");
-  // const [theArticlePost, setTheArticlePost] = useState("");
-  // const [countContainer, setCountContainer] = useState(0);
-  // const [countArticle, setCountArticle] = useState(0);
-
   useEffect(() => {
     setTimeout(() => {
       setArticlePost(document.getElementById("article-post"));
@@ -32,8 +26,6 @@ const ArticlePost = ({
   }, []);
 
   document.body.onclick = () => {
-    console.log("container:", countContainer);
-    console.log("article:", countArticle);
     if (countContainer != countArticle) {
       articlePost.style.display = "none";
       setShowArticle(false);
